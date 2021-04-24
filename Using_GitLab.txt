@@ -1,0 +1,111 @@
+1. Download git from git-scm and git account
+2. check installation
+	git --version
+3. run git command
+	git config --global user.name "xxxx(ID)"
+	git config --global user.name 		//check your user name
+	git config --global user.email "xxxx(email adress)"
+	git config --global user.email 		//check eamil
+	git config --global --list 		//check info
+4. create a demo project/folder & add to git
+5. goto 'cmd' or 'git bash', cd(change directory) to the location of the folder and run following commands
+	git init
+	git status
+	git add .		// "add .(dot)" meas add all files
+	git commit -m "msg"
+	git push -u "url(git project url)" master
+6. check project (files) added on GitLab
+
+===============
+*Keygen(ssh)
+
+> ssh-keygen
+> cd ~/.ssh
+> cat id_rsa.pub
+copy and insert ssh key on the website.
+
+
+
+============
+git branch 	//check branchs and current branch
+git branch xxxx(new branch) 		//add new branch, ex. git branch branch1
+(or git branch -b xxxx)
+git checkout xxxx(change branch)	//change branch from pre to new
+git merge xxxx(branch that I want to merge)	//merge contents with xxxx 
+
+#copy data from GitLab
+cd directory(where I want to download file)
+git clone "url" (copy all data from "url" to current directory)
+git pull "url" (updata old files in the current directroy to updated files in the "url")
+
+===================
+#push to Repo(origin) from branch(ex. branch1)
+'git push -u origin branch1'
+
+===================
+#conflict
+g
+
+#Solution 1. merge master's changes to brach1's file
+git checkout brach1
+git merge master
+
+#Solution 2. merge 
+git checkout master
+git merge branch1
+===================
+# remove files in working area 
+git checkout filename(or '.' for all files)
+
+# remove commit in working area (git log --online, check recent commit)
+git reset HEAD~1 //remove recent 1 commit
+git reset HEAD~n //remove recent n commits
+
+# revert changes (When you pushed file, then it can't be deleted. It should be reverted) 
+git revert commit_ID (git log --online > first column info == commit_ID)
+git reset --soft A
+git reset -- mixed A
+git reset --hard A
+(and 'git push -f')
+
+** staged means a file is added but not commited (green file)
+** a file is in working directory means the file isn't added yet (red file)
+
+Let's say you had commits:
+C
+B
+A
+git revert B, will create a commit that undoes changes in B.
+git revert A, will create a commit that undoes changes in A, but sewill not touch changes in B
+Note that if changes in B are dependent on changes in A, the revert of A is not possible.
+git reset --soft A, will change the commit history and repository; staging and working directory will still be at state of C.
+git reset --mixed A, will change the commit history, repository, and staging; working directory will still be at state of C.
+git reset --hard A, will change the commit history, repository, staging and working directory; you will go back to the state of A completely.
+===================
+remote means like a github website repository.
+
+What is 'git remote add ...'
+
+As you probably know, git is a distributed version control system. Most operations are done locally. To communicate with the outside world, git uses what are called remotes. These are repositories other than the one on your local disk which you can push your changes into (so that other people can see them) or pull from (so that you can get others changes). The command 'git remote add origin git@github.com:peter/first_app.gitcreates' a new remote called origin located at git@github.com:peter/first_app.git. Once you do this, in your push commands, you can push to origin instead of typing out the whole URL.
+
+What is 'git push origin master'
+
+This is a command that says "push the commits in the local branch named master to the remote named origin". Once this is executed, all the stuff that you last synchronised with origin will be sent to the remote repository and other people will be able to see them there.
+
+===
+
+Please do following set of commands in order to merge with the master, Assuming that you are in branch testBranch and you want to merge the changes with the master,
+
+First checkout to master branch,
+
+git checkout master
+Now pull the latest changes in master,
+
+git pull origin master
+Merge with the testBranch
+
+git merge testBranch
+Push the changes to master
+
+git push origin master
+That's it, you are done.
