@@ -82,7 +82,9 @@ git reset --soft A, will change the commit history and repository; staging and w
 git reset --mixed A, will change the commit history, repository, and staging; working directory will still be at state of C.
 git reset --hard A, will change the commit history, repository, staging and working directory; you will go back to the state of A completely.
 ===================
-remote means like a github website repository.
+*Remote: Github website repository
+*Working directory: Working place for others (Staged: files are added, Unstaged: files are not added)
+*Local: ex. My computer 
 
 What is 'git remote add ...'
 
