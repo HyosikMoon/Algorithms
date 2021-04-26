@@ -1,0 +1,107 @@
+1. Introduction to software design process
+    1.1 Software qualities
+        - Correctness: Behaves according to its stated functional specifications
+        - Reliability: The probability that the software will operate as expected over a specified time interval, 
+        - Robustness: Behaves “reasonably” even in circumstances that were not anticipated in the requirements specification
+        - Performance: An external quality based on user requirements
+        - Efficiency: Efficiency is an internal (implementation) quality related to the use of computer resources (memory, time, communication)
+        - Usability: A software system is usable—or userfriendly– if human users find it easy to use
+        - Verifiability: A software system is verifiable if its properties can be verified easily (e.g. performance or correctness)
+        - Maintainability: modifications to a software system after initial release, Maintainable – if the software allows us to make these changes
+        - Reusability: Use a software product, perhaps with minor changes, to build another product
+        - Portability: Software is portable if it can run in different environments
+        - Understandability: Software system can be understood, Internally – for software maintenance, Externally – predictable behavior, related to usability
+        - Interoperability:  Ability of a system to coexist and cooperate with other systems
+    1.2 Software engieering properties
+2. Software design and development
+    2.1 Module (Module Interface Specification)
+        2.1.1 Terms (Module, Uses, Syntax, Sementics)
+        2.1.2 Abstract objects MIS ✔
+        2.1.3 Abstrac data types MIS ✔
+        2.1.4 Generic MIS ✔
+        2.1.5 Interface MIS 
+    2.2 Objecte Oriented Design
+        - Inheritance, Polymorphism, Dynamic binding
+    2.3 Unified Modeling Language
+        - Inheritance, Implements, Association -> Uses
+    2.4 Quality criteria for MIS
+        - consistent : name conventions, ordering of parameters in argument lists
+                          (ex. is_full -> is_empty(), set(x,y,z) -> get(x,y,z)) 
+        - essential : ommit unnecessary features
+        - general :  cannot always predict how the module will be used 
+                        (deal with general problem, and solution)
+        - minimal : avoid access routines with two potentially independent services
+                       (ex. one transition or one output)
+        - high cohesion : components are closely related
+        - low coupling : not strongly dependent on other modules (uses ↓)
+        - opaque : information hiding
+       - avoid exceptions, implementation indepedent (modular)
+    2.5 Module Decomposition
+        2.5.1 Uses relation, Directed Acycle Graph, Tree, Hierarchy
+    2.6 Module Guide
+        2.6.1 Rational Design Process 
+          - SRS > MG > MIS > Code > Testing  
+        2.6.2 Hardware, Software, Behaviour decision hiding
+    2.7 Generics and Interfaces in Java
+    2.8 Specification
+        2.8.1 Sepcification Via UML
+        2.8.2 Strategy Design Pattern
+        2.8.3 Design pattern
+	- 2.8.3 Classification of design patterns
+	- Creational patterns: Concern the process of object creation
+	- Structural patterns: Deal with the composition of objects or classes
+	- Behavioral patterns: Characterize the ways in which classes or objects interact and distribute responsibility
+            2.8.3.1 UML 
+                - UML diagram of mesurable interface
+            2.8.3.2 MVC (Model View Controller)
+                - Three components (Model, View, Controller)
+            2.8.3.3 Classification of design patterns (Creational, Structural, Behavioural)
+                2.8.3.3.1 The Proxy Pattern
+                2.8.3.3.2 Adapter Design Pattern
+            2.8.3.4 Specification qualities (Unambigous, Varifiable, Understandable, ...)
+            ✔ Line Formatter Natural Language Specification (#L26)
+            ✔ abstract, correct, unambiguous, complete, consistent and verifiable?
+            2.8.3.5 Parnas Tables
+   
+3. Verification and Testing
+    3.1 Testing
+        3.1.1 Overview of Testing
+        3.1.2 WiteBox Testing
+            - Test cases are selected based on the code itself
+        3.1.3 BlackBox Testing
+            - Test cases are selected based on the specification
+    3.2 Testing in the Large
+        3.2.1 Oracle problem
+            - Def. Given an input for a system, the challenge of distinguishing the correct behaviour from potentially incorrect behavior is called the “test oracle problem”. 
+            - pseudo oracle like parallel testing
+            - method of manufacture solutions
+        3.2.2 Metamorphic testing
+            - Used for testing when there is no test oracle
+            - MRs specify how a change in inputs should change the output
+        3.2.3 Module testing
+            - With use relation and MIS we can test modules without implementing all modules
+        3.2.4 Integration testing
+            - Big-bang approach (First test individual modules and test integrated system)
+            - Incremental approach (Modules are progressively integrated and tested. 
+        3.2.5 Testing Object Oriented and Generic programs
+        3.2.6 Mutation testing
+    3.3 Analysis
+        - Analysis is a static concept which analyzes many different program executions, whereas testing is a dynamic concept (you have to execute the code) which only characterizes one execution at a time.
+        3.3.1 Code walk throughs and inspections
+        3.3.2 Correctness proofs
+        3.3.3 Symbolic execution
+        3.3.4 Model checking
+        3.3.5 Debugging
+        3.3.6 Verifying performance
+
+
+
+✔ Python: ADTs(class, state variables, methods), Abstract Objects(class, @static state variables, @static methods), Library(not class, no state variables, methods)
+✔ Java : ADTs(class, state variables, methods), Abstract Objects(class, @static state variables, @static methods), Library(class, no state variables , @static methods)
+    * In Java(A3) 
+	- ADTs : AttributeT, CourseT, LOsT, ProgramT(subclass), IndicatorT(enum)?, HashSet(generic)?
+	- Abstract Objects : Norm
+	- Libraries : Services, Measures(Interface)?
+        , ADTs can inherits interface and superclass together like "public class ProgramT extends HashSet<CourseT> implements Measures { ... }".
+        , If it inherits superclass, the constructor can be super(). 
+        , ADTs enum?, Measures(Interface) Libraries?, HashSet?
