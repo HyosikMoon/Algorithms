@@ -13,6 +13,28 @@
         - Understandability: Software system can be understood, Internally – for software maintenance, Externally – predictable behavior, related to usability
         - Interoperability:  Ability of a system to coexist and cooperate with other systems
     1.2 Software engieering properties
+        - Generality: A software algoritm can be general so it can be used for many similiar tasks such as read and write file in USB or Hard disk.
+        - Separation of Concerns: Allows us to deal with different aspects of a problem, so that we can concentrate on each separately
+        - Abstraction: Process where we identify the important aspects of a phenomenon and ignore its details 
+        - Information Hiding:  • A special instance of abstraction 
+		            • C hange implementation details w/o letting users see or know internal details
+			• Treating modules of a system as opaque “black boxes” 
+			• Enables change 
+			• Increases maintainability
+        - Open-Closed Principle: A module [component] should be open for extension but closed for modification
+        - Modularity:  • Complex system may be divided into simple pieces called modules – Doable building blocks 
+		  • Can enhance reusability 
+		  • We want high cohesion and low coupling
+        - Cohesion: strength of relationship between elements within a module
+        - Coupling: strength of relationship between different modules
+        - Anticipation of Change:  • Reasons for change
+			      – Limited understanding of requirements when software was developed
+			      – Environmental change (organization, surrounding software systems, etc)
+			     • May apply to software product and the software process (e.g. personnel turnover) 
+			     • Anticipation of change can save money over the life of the product
+        - Incrementality:  • Process that proceeds in a stepwise fashion 
+		      • Application – identify useful early subsets that can be released to customers to get early feedback 
+		      • Some software lifecycle models incorporate incrementality
 2. Software design and development
     2.1 Module (Module Interface Specification)
         2.1.1 Terms (Module, Uses, Syntax, Sementics)
@@ -28,14 +50,17 @@
         - consistent : name conventions, ordering of parameters in argument lists
                           (ex. is_full -> is_empty(), set(x,y,z) -> get(x,y,z)) 
         - essential : ommit unnecessary features
-        - general :  cannot always predict how the module will be used 
+        - general :  Generality includes open-endedness leaving room for future expansion
                         (deal with general problem, and solution)
         - minimal : avoid access routines with two potentially independent services
                        (ex. one transition or one output)
         - high cohesion : components are closely related
         - low coupling : not strongly dependent on other modules (uses ↓)
         - opaque : information hiding
-       - avoid exceptions, implementation indepedent (modular)
+        - ambiguous : MIS can be ambiguous if it is interpreted in two more ways.
+        - abstract : ex. not abstract. b/c it mentioned that the action specifically(How to implement). ex. set variable to True
+        - validatable : ex. an ambiguous spec cannot be validated
+        - avoid exceptions, implementation indepedent (modular)
     2.5 Module Decomposition
         2.5.1 Uses relation, Directed Acycle Graph, Tree, Hierarchy
     2.6 Module Guide
@@ -51,7 +76,7 @@
 	- Creational patterns: Concern the process of object creation
 	- Structural patterns: Deal with the composition of objects or classes
 	- Behavioral patterns: Characterize the ways in which classes or objects interact and distribute responsibility
-            2.8.3.1 UML 
+            2.8.3.1 UML (http://www.cs.utsa.edu/~cs3443/uml/uml.html)
                 - UML diagram of mesurable interface
             2.8.3.2 MVC (Model View Controller)
                 - Three components (Model, View, Controller)
@@ -66,10 +91,10 @@
 3. Verification and Testing
     3.1 Testing
         3.1.1 Overview of Testing
-        3.1.2 WiteBox Testing
-            - Test cases are selected based on the code itself
-        3.1.3 BlackBox Testing
-            - Test cases are selected based on the specification
+        3.1.2 WiteBox Testing: Test cases are selected based on the code itself
+        3.1.3 BlackBox Testing: Test cases are selected based on the specification
+        3.1.4 Regression testing: It means rerunning your test suite after a change, to verify that the change didn't break something that was previously working.
+        3.1.5 Incremental testing: More general term. Test for small changes, this is incremental testing. The increment could be adding a new module to the testing.
     3.2 Testing in the Large
         3.2.1 Oracle problem
             - Def. Given an input for a system, the challenge of distinguishing the correct behaviour from potentially incorrect behavior is called the “test oracle problem”. 
@@ -99,9 +124,9 @@
 ✔ Python: ADTs(class, state variables, methods), Abstract Objects(class, @static state variables, @static methods), Library(not class, no state variables, methods)
 ✔ Java : ADTs(class, state variables, methods), Abstract Objects(class, @static state variables, @static methods), Library(class, no state variables , @static methods)
     * In Java(A3) 
-	- ADTs : AttributeT, CourseT, LOsT, ProgramT(subclass), IndicatorT(enum)?, HashSet(generic)?
+	- ADTs : AttributeT, CourseT, LOsT, ProgramT(subclass), HashSet(generic)
 	- Abstract Objects : Norm
-	- Libraries : Services, Measures(Interface)?
+            - Module : IndicatorT(enum), Measures(Interface)
+	- Libraries : Services
         , ADTs can inherits interface and superclass together like "public class ProgramT extends HashSet<CourseT> implements Measures { ... }".
-        , If it inherits superclass, the constructor can be super(). 
-        , ADTs enum?, Measures(Interface) Libraries?, HashSet?
+        , If it inherits superclass, the constructor can be super().
