@@ -16,28 +16,30 @@ def create_random_items(n, k):
 
 
 def max_value(items, L):
-    sub_problems = [[0 for _ in range(L+1)] for i in range(len(items) + 1)]
+    ks = [[0 for _ in range(L+1)] for i in range(len(items) + 1)]
     pred = {}
-    #  ks(i, c) = Case1. Include i  or  Case2. Exclude i case
-    #  ks(i, c) = max(ks(i - 1, c), Vi + ks(i - 1, c - Wi))
+    #  ks(i, c) = Case1. Include i: Vi + ks(i - 1, c - Wi)
+    #             Case2. Exclude i: ks(i - 1, c)
+    #  ks(i, c) = max(Vi + ks(i - 1, c - Wi), ks(i - 1, c))
     for i in range(1, len(items) + 1):
         for c in range(1, L+1):
-            # If Exclude i case's weight is greater than limit weight c, then ks(i, c) -> ks(i-1, c)
+            # If i-th weight is greater than the limit weight c, then ks(i, c) -> ks(i-1, c)
+            # Check [c-items[i-1].weight] 
             if c < items[i-1].weight:
-                sub_problems[i][c] = sub_problems[i-1][c]
+                ks[i][c] = ks[i-1][c]
                 pred[(i,c)] = (i-1,c)
             else:
-                # Case2. If Exclude i case is greater than Include i case then ks(i, c) -> Exclude i case
-                if sub_problems[i-1][c] > sub_problems[i-1][c-items[i-1].weight] + items[i-1].value:
-                    sub_problems[i][c] = sub_problems[i-1][c]
+                # If Case2 > Case1, then ks(i, c) -> Case2
+                if ks[i-1][c] > ks[i-1][c-items[i-1].weight] + items[i-1].value:
+                    ks[i][c] = ks[i-1][c]
                     pred[(i,c)] = (i-1,c)
                 else:
-                    # Case1. ks(i,c) -> Include i case
-                    sub_problems[i][c] = sub_problems[i-1][c-items[i-1].weight] + items[i-1].value
+                    # ks(i, c) -> Case1
+                    ks[i][c] = ks[i-1][c-items[i-1].weight] + items[i-1].value
                     pred[(i,c)] = (i-1,c-items[i-1].weight)
-    #print(sub_problems)
-    #print("Number of sub problems solved: " + str(len(sub_problems) * len(sub_problems[0])))
-    #print("Max value: " + str(sub_problems[len(items)][C]))
+    print(ks)
+    print("Number of sub problems solved: " + str(len(ks) * len(ks[0])))
+    print("Max value: " + str(ks[len(items)][L]))
     opt_items = []
     cell = (len(items), L)
     while cell in pred:
@@ -69,12 +71,13 @@ def solve(items, L, sub_problems, i, c):
             solve(items, L, sub_problems, i-1, c-items[i-1].weight)
         sub_problems[(i, c)] = max(sub_problems[(i-1, c)], sub_problems[(i-1, c-items[i-1].weight)] + items[i-1].value)
 
+
 items = [Item(1,2), Item(2,3), Item(6,6), Item(8,9)]
+print(max_value(items, 10))
 
+# def time_test(f, items, L):
+#     start = timeit.default_timer()
+#     f(items, L)
+#     return timeit.default_timer() - start
 
-def time_test(f, items, L):
-    start = timeit.default_timer()
-    f(items, L)
-    return timeit.default_timer() - start
-
-items = create_random_items(900,100)
+# items = create_random_items(900,100)
