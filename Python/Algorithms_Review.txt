@@ -1,0 +1,142 @@
+0. Sorting
+    0.1 Elementary Sorts (Bubble, Selection, Insertion, Shell sort)
+    0.2 Mergesort
+    0.3 Quicksort
+    0.4 Heapsort (priority queue)
+
+1. Searching
+1. Symbol table (key, value pair data structure)
+    1.1 Implementation
+        1.1.1 Unorder-linked list (Sequential search ST)
+            - search, insert(put), get, delete, select, size 
+        1.1.2 Order-array (Binary Search ST)
+            - search, insert(put), get, delete, select, size, rank
+        1.1.3 Binary search tree 
+            - search(find), get, insert(put), min, max, floor, ceiling, size, rank
+            - walk(traversal), delete(Hibbard deletion, case1,2,3)
+            - BST cost
+             ✔ What is the best/worst sequence to insert in a BST (min height)
+             ✔ How would you reverse BST? (Change left right root at each level)
+             ✔ What is inorder/preorder/postorder traversal nodes printed?
+             ✔ What is reverse inorder/preorder BST traversal nodes printed?
+             ✔ In preorder when a root is in the middle, when it is middle always? 
+        1.1.4 2-3 trees
+             ✔ What is the inesertion result of this 2-3 trees? 
+        1.1.5 left-leaning red-black tree
+        1.1.6 Balanced Trees (B-trees)
+        1.1.7 Hash Table
+            1.1.7.1 Collision
+                1.1.7.1.1 Separate Chaining
+		- Easier to implement delete
+		- Performance degrades gracefully
+		- Clustering less sensitive to poorly-designed has function
+                1.1.7.1.2 Linear Probing
+		- Less wasted sapce
+		- Better cache performance
+                1.1.7.1.3 Two-probe hashing (separate-chaining variant)
+		- Hash to two positions, insert key in shorter of the two chains
+		- Reduces expected length of the longest chain to log log N
+                1.1.7.1.4 Quadratic proving (linear-probing variant)
+		- h(k) + c1*i + c2*i^2
+		- Works much better than linear proving, and clustering can be avoided
+		- When two keys have the same initial probe position, then their  probe sequences are the same
+		- This property leads to a milder form of clustering, called secondary clustering
+                1.1.7.1.5 Double hashing (linear-probing variant)
+		- Use linear probing, but skip a variable amout, not just 1 each time.
+ 		- Effectively eliminates clustering
+		- Can allow table to become nearly full
+ 		- More difficult to implement delete
+             ✔ Find the best size(m) of hash table 
+
+2. Graph
+    2.1 Undirected Graph
+        2.1.1 Representation & API
+            - Adjacent matrix, Adjacent linked-list
+            - Search, finds vertices connected to a source vertex 
+        2.1.2 DFS (w/ stack)
+            - pseudo algorithm (13/28 C4P1)
+            ✔ Draw output tree
+        2.1.3 BFS (w/ queue)
+            - pseudo algorithm (26/28 C4P1)
+            ✔ Draw output tree
+        2.1.4 BFS vs DFS
+            ✔ Implement with different data structure DFS, BFS (ex. DFS with queue, BFS with stack)
+        2.1.5 connected components
+            ✔ Process with union-find and DFS
+    2.2 Directed Graph
+        2.2.1 API
+        2.2.2 Multisource shortest path question
+        2.2.3 Topological Sort(reverse postorder)
+            2.2.3.1 Preorder, put vertex on a queue before the recursive call
+            2.2.3.2 Postorder, put vertex on a queue after the recursive call
+            2.2.3.3 Reverse postorder, put vertex on a stack after the recursive call	
+        2.2.4 Strong components    
+            2.2.4.1 Kosaraju-Sharir algorithm
+                - Phase1: run DFS on G^{R} to compute reverse postorder
+                - Phase2: run DFS on G, considering vertices in order given by first DFS
+            *DFS preorder, postorder (https://www.youtube.com/watch?v=_2eDPL-kjIo)
+    2.3 Minimum Spanning Trees (edge-weighted undirected graph, spanning path makes samllest sum of edge weights)
+        2.3.1 Greedy MST algorithm (cut property, choose minumum weight untill mark V-1 edges)
+            2.3.1.1 Efficient implementation
+                2.3.1.1.1 Krushkal's algorithm (E log E)
+                    - ✔Krushkal's algorithm implementation(Union-find data structure), minimun spanning forest?
+                2.3.1.1.2 Prim's algorithm
+                    2.3.1.1.2.1 Lazy version implementation (E log E)
+                    2.3.1.1.2.2 Eager version implementation (E log V)
+                ✔ When and which one is better?, dense/sparse graphs which one is better, undirected graph
+                ✔ How would you use these algorithms for a forest, for a different kinds of graphs,  
+    2.4 Shortest paths
+        2.4.1 Generic shortest-paths algorithm
+            2.4.1.2 Implementation
+                2.4.1.2.1 Dijkstra's algorithm (no negative weights, ElogV(typical), ElogV(worst))
+                    - Nearly linear-time when weights are nonnegative
+                    - Generalization encompasses DFS, BFS, and Prim
+                    - 1. a vertex, edges(weights), relax -> 2. next vertex(min distance), edges(weights), relax -> repeat
+                   ✔ Compare BFS, 
+                2.4.1.2.2 Acyclic edge-weighted digraphs, Topological sort algorithm (no directed cycles, negative weights ok, E+V, E+V)
+                    - Arise in applications
+                    - Faster than Dijkstra's algorithm
+                    - Negative weights are no problem
+                    - Dijkstra algorithm based on topological order not min distance
+                      : 1. topological sort -> 2. first topo vertex, edges(weight), relax -> 3. next topo vertex, edges(weight), relax -> repeat
+                2.4.1.2.3 Negative weights and positive cycles, Bellman-Ford algorithm (no negative cycles, negative weights ok, positive cylce ok, EV, EV)
+                    - Arise in applications
+                    - If no negatvie cycles, can find shortest paths via Bellman-Ford
+                    - If negatvie cycles, can find one via Bellman-Ford
+                    - Relax all vertices (in order(option)) until no change happens (at most V times), 
+                    - Maintain queue of vertices whose distTo[] changed. -> queue based implementation : E+V(typical), EV(worst)
+        ✔ Given an edge-weighted digraph, find the shortest path from s to t. <- Given an edge-weighted digraph, find the shortest paths from s to all other vertices (single source shortest paths).
+
+        * 2XB3 Advanced graphing algorithms 
+            1) Vertex cover (Minimum vertex cover) 
+                - Find the set of vertcies to cover all edges
+                - We implemented it with undirected and unweighted graph	
+            2) Independent set (Maximum Independent set)
+                - Independent set is a subset of the vertex set of a graph that contains no pair of adjacent vertices
+                - Maximal, maximum independent sets (Not unique)
+                - # Vertices - maximum independent sets = Minumum vertex cover
+            3) Clique
+                - Clique is a subset of the vertex set of a graph that is a complete graph. (Each vertes is connected to all other vertices)
+
+3. Strings
+    3.1 String sorts
+        3.1.1 Key-Indexed counting
+        3.1.2 Least-significant-digit-first string sort (LSD)
+        3.1.3 Most-significant-digit-first string sort (MSD)
+        3.1.4 3-way string quicksort
+        3.1.5 Suffix arrays
+            3.1.5.1 Longest repeated substring
+    3.2 Tries
+        3.2.1 R-way Tries
+        3.2.2 Ternary Search Tries
+        3.2.3 Character-Based Operations
+    3.3 Substring search ✔
+        3.3.1 Brute-force substring search
+        3.3.2 Knuth-Morris-Pratt substring search
+        ✔  Check slides KMP Algorithm
+    3.4 Regular Expression
+    3.5 Data Compression ✔
+        3.5.1 Run-length Coding
+            3.5.1.3 prefix-free code
+        3.5.2 Huffman Compression
+        3.5.3 LZW Compression
