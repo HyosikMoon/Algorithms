@@ -49,32 +49,59 @@ def create_random_items(n, k):
 #     return opt_items
 
 
+# def max_value(items, L):
+#     ks = [[0 for _ in range(L + 1)] for i in range(len(items) + 1)]
+#     pred = {}
+#     # There are two cases to find the ks[i][c]
+#     # i) Case1. Include i : ks[i][c] = i.value + ks[i][c - i.weight]
+#     # ii) Case2. Exclude i : ks[i][c] = ks[i - 1][c]
+#     for i in range(1, len(items) + 1):
+#         for c in range(1, L + 1):
+#             # When the item's weight is larger than the limit c, then ks[i][c] = ks[i - 1][c]
+#             if c < items[i - 1].weight:
+#                 ks[i][c] = ks[i - 1][c]
+#                 pred[(i, c)] = (i - 1, c)
+#             else:
+#                 # If Case2 > Case1, then ks[i][c] = Case2
+#                 if ks[i - 1][c] > ks[i - 1][c - items[i - 1].weight] + items[i - 1].value:
+#                     ks[i][c] = ks[i - 1][c]
+#                     pred[(i, c)] = (i - 1, c)
+#                 # Else, ks[i][c] = Case1
+#                 else:
+#                     ks[i][c] = ks[i - 1][c - items[i - 1].weight] + items[i - 1].value
+#                     pred[(i, c)] = (i - 1, c - items[i - 1].weight)
+#     opt_items = []
+#     cell = (len(items), L)
+#     while cell in pred:
+#         # If cell[1] != pred[cell][1] -> it means Case1 (Include i) -> append ith item
+#         # If cell[1] == pred[cell][1] -> it means Case2 (Exclude i) -> move next cell(pred cell)
+#         if cell[1] != pred[cell][1]:
+#             opt_items.append(items[cell[0] - 1])
+#         cell = pred[cell]
+#     return opt_items
+
+
 def max_value(items, L):
-    ks = [[0 for _ in range(L + 1)] for i in range(len(items) + 1)]
+    ks = [[0 for _ in range(L + 1)] for _ in range(len(items) + 1)]
     pred = {}
-    # There are two cases to find the ks[i][c]
-    # i) Case1. Include i : ks[i][c] = i.value + ks[i][c - i.weight]
-    # ii) Case2. Exclude i : ks[i][c] = ks[i - 1][c]
+    # insert values in ks map
     for i in range(1, len(items) + 1):
         for c in range(1, L + 1):
-            # When the item's weight is larger than the limit c, then ks[i][c] = ks[i - 1][c]
             if c < items[i - 1].weight:
                 ks[i][c] = ks[i - 1][c]
                 pred[(i, c)] = (i - 1, c)
             else:
-                # If Case2 > Case1, then ks[i][c] = Case2
-                if ks[i - 1][c] > ks[i - 1][c - items[i - 1].weight] + items[i - 1].value:
+                # Include i
+                if ks[i - 1][c] < items[i - 1].value + ks[i - 1][c - items[i - 1].weight]:
+                    ks[i][c] = items[i - 1].value + ks[i - 1][c - items[i - 1].weight]
+                    pred[(i, c)] = (i, c - items[i - 1].weight)
+                # Exclude i
+                else:
                     ks[i][c] = ks[i - 1][c]
                     pred[(i, c)] = (i - 1, c)
-                # Else, ks[i][c] = Case1
-                else:
-                    ks[i][c] = ks[i - 1][c - items[i - 1].weight] + items[i - 1].value
-                    pred[(i, c)] = (i - 1, c - items[i - 1].weight)
     opt_items = []
     cell = (len(items), L)
     while cell in pred:
-        # If cell[1] != pred[cell][1] -> it means Case1 (Include i) -> append ith item
-        # If cell[1] == pred[cell][1] -> it means Case2 (Exclude i) -> move next cell(pred cell)
         if cell[1] != pred[cell][1]:
             opt_items.append(items[cell[0] - 1])
         cell = pred[cell]
