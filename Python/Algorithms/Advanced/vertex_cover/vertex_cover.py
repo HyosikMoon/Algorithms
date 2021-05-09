@@ -26,12 +26,12 @@ class Graph:
             self.adj[node2].append(node1)
 
     def remove_edge(self, node1, node2):
-        if node2 in self.adj[node1]:                    
+        if node2 in self.adj[node1]:
             self.adj[node1].remove(node2)
-        if node1 in self.adj[node2]:                    
+        if node1 in self.adj[node2]:
             self.adj[node2].remove(node1)
 
-    def remove_incident_edges(self, node):      
+    def remove_incident_edges(self, node):
         for neighbour in self.adj[node]:
             self.adj[neighbour].remove(node)
         self.adj[node] = []
@@ -55,12 +55,12 @@ class Graph:
 
 ## Vertex cover implementation
 def vertex_cover(G):                            # G.adj = {0:[1,2,3], 1:[0,2], 2:[0,1], 3:[0]}
-    nodes = G.adj.keys()                        # nodes = [0, 1, 2, 3]
+    nodes = list(G.adj.keys())                        # nodes = [0, 1, 2, 3]
     best_cover = nodes                          # best_covers = [0, 1, 2, 3]    
     covers = power_set(nodes)                   # covers = power_set(nodes) = [[], [1], ... , [0, 1, 2, 3]]
-    for cover in covers:                         
+    for cover in covers:
         if is_vertex_cover(G, cover):           # Decide if cover is a vertex_cover
-            if len(cover) < len(best_cover):     
+            if len(cover) < len(best_cover):
                 best_cover = cover
     return best_cover                           # Minumum vertex_cover
 
@@ -121,3 +121,19 @@ def create_edge_list(n):
 
 # Clique
 # Clique is a subset of the vertex set of a graph that is a complete graph. (Each vertes is connected to all other vertices)
+
+
+## Test
+graph = Graph()
+graph.add_node(0)
+graph.add_node(1)
+graph.add_node(2)
+graph.add_node(3)
+
+graph.add_edge(0, 1)
+graph.add_edge(0, 2)
+graph.add_edge(0, 3)
+graph.add_edge(1, 2)
+
+vc = vertex_cover(graph)
+print(vc)
