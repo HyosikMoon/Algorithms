@@ -135,12 +135,29 @@ def create_random_items(n, k):
 
 
 def max_value(items, L):
-    ks = [[0 for _ in range(len(items) + 1) for in range(L + 1)]]
+    ks = [[0 for _ in range(L + 1)] for _ in range(len(items) + 1)]
     pred = {}
     for i in range(1, len(items) + 1):
-        for c in range(1, len(L) + 1):
-            if L < items[i].weight:
-
+        for c in range(1, L + 1):
+            if c < items[i - 1].weight:
+                ks[i][c] = ks[i - 1][c]
+                pred[(i, c)] = (i - 1, c)
+            else:
+                # include i
+                if items[i - 1].value + ks[i - 1][c - items[i - 1].weight] > ks[i - 1][c]:
+                    ks[i][c] = items[i - 1].value + ks[i - 1][c - items[i - 1].weight]
+                    pred[(i, c)] = (i - 1, c - items[i - 1].weight)
+                # exclude i
+                else:
+                    ks[i][c] = ks[i - 1][c]
+                    pred[(i, c)] = (i - 1, c)
+    opt_items = []
+    cell = (len(items), L)
+    while cell in pred:
+        if cell[1] != pred[cell][1]:
+            opt_items.append(items[cell[0] - 1])
+        cell = pred[cell]
+    return opt_items
 
 
 def top_down(items, L):
@@ -167,7 +184,7 @@ def solve(items, L, sub_problems, i, c):
 
 
 items = [Item(1,2), Item(2,3), Item(6,6), Item(8,9)]
-print(max_value(items, 4))
+print(max_value(items, 10))
 
 # def time_test(f, items, L):
 #     start = timeit.default_timer()
