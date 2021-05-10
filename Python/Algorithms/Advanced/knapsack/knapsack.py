@@ -108,30 +108,39 @@ def create_random_items(n, k):
 #     return opt_items
 
 
+# def max_value(items, L):
+#     ks = [[0 for _ in range(L + 1)] for _ in range(len(items) + 1)]
+#     pred = {}
+#     for i in range(1, len(items) + 1):
+#         for c in range(1, L + 1):
+#             if c < items[i - 1].weight:
+#                 ks[i][c] = ks[i - 1][c]
+#                 pred[(i, c)] = (i - 1, c)
+#             else:
+#                 # Exclude i < Include i -> ks = Include i
+#                 if ks[i - 1][c] < items[i - 1].value + ks[i - 1][c - items[i - 1].weight]:
+#                     ks[i][c] = items[i - 1].value + ks[i - 1][c - items[i - 1].weight]
+#                     pred[(i, c)] = (i - 1, c - items[i - 1].weight)
+#                 # Exclude i > Include i -> ks = Exclude i
+#                 else:
+#                     ks[i][c] = ks[i - 1][c]
+#                     pred[(i, c)] = (i - 1, c)
+#     opt_items = []
+#     cell = (len(items), L)
+#     while cell in pred:
+#         if cell[1] != pred[cell][1]:
+#             opt_items.append(items[cell[0] - 1])
+#         cell = pred[cell]
+#     return opt_items
+
+
 def max_value(items, L):
-    ks = [[0 for _ in range(L + 1)] for _ in range(len(items) + 1)]
+    ks = [[0 for _ in range(len(items) + 1) for in range(L + 1)]]
     pred = {}
     for i in range(1, len(items) + 1):
-        for c in range(1, L + 1):
-            if c < items[i - 1].weight:
-                ks[i][c] = ks[i - 1][c]
-                pred[(i, c)] = (i - 1, c)
-            else:
-                # Exclude i < Include i -> ks = Include i
-                if ks[i - 1][c] < items[i - 1].value + ks[i - 1][c - items[i - 1].weight]:
-                    ks[i][c] = items[i - 1].value + ks[i - 1][c - items[i - 1].weight]
-                    pred[(i, c)] = (i - 1, c - items[i - 1].weight)
-                # Exclude i > Include i -> ks = Exclude i
-                else:
-                    ks[i][c] = ks[i - 1][c]
-                    pred[(i, c)] = (i - 1, c)
-    opt_items = []
-    cell = (len(items), L)
-    while cell in pred:
-        if cell[1] != pred[cell][1]:
-            opt_items.append(items[cell[0] - 1])
-        cell = pred[cell]
-    return opt_items
+        for c in range(1, len(L) + 1):
+            if L < items[i].weight:
+
 
 
 def top_down(items, L):
