@@ -54,15 +54,28 @@ class Graph:
 
 
 ## Vertex cover implementation
-def vertex_cover(G):                            # G.adj = {0:[1,2,3], 1:[0,2], 2:[0,1], 3:[0]}
-    nodes = list(G.adj.keys())                        # nodes = [0, 1, 2, 3]
-    best_cover = nodes                          # best_covers = [0, 1, 2, 3]    
-    covers = power_set(nodes)                   # covers = power_set(nodes) = [[], [1], ... , [0, 1, 2, 3]]
-    for cover in covers:
-        if is_vertex_cover(G, cover):           # Decide if cover is a vertex_cover
-            if len(cover) < len(best_cover):
-                best_cover = cover
-    return best_cover                           # Minumum vertex_cover
+# def vertex_cover(G):                            # G.adj = {0:[1,2,3], 1:[0,2], 2:[0,1], 3:[0]}
+#     nodes = list(G.adj.keys())                        # nodes = [0, 1, 2, 3]
+#     best_cover = nodes                          # best_covers = [0, 1, 2, 3]    
+#     covers = power_set(nodes)                   # covers = power_set(nodes) = [[], [1], ... , [0, 1, 2, 3]]
+#     for cover in covers:
+#         if is_vertex_cover(G, cover):           # Decide if cover is a vertex_cover
+#             if len(cover) < len(best_cover):
+#                 best_cover = cover
+#     return best_cover                           # Minumum vertex_cover
+
+
+def vertex_cover(G):
+    vc = list(G.adj.keys())
+    nodes = power_set(vc)
+    for node in nodes:
+        cg = G.copy()
+        for elem in node:
+            cg.remove_incident_edges(elem)
+        if cg.has_no_edges() and len(node) < len(vc):
+            vc = node
+    return vc
+
 
 def is_vertex_cover(G, cover):                  # if is_vertex_cover(G, [0])
     temp_G = G.copy()                           # temp_G = {0:[1,2,3], 1:[0,2], 2:[0,1], 3:[0]}
