@@ -65,25 +65,14 @@ class Graph:
 #     return best_cover                           # Minumum vertex_cover
 
 
-def vertex_cover(G):
-    vc = list(G.adj.keys())
-    nodes = power_set(vc)
-    for node in nodes:
-        cg = G.copy()
-        for elem in node:
-            cg.remove_incident_edges(elem)
-        if cg.has_no_edges() and len(node) < len(vc):
-            vc = node
-    return vc
+# def is_vertex_cover(G, cover):                  # if is_vertex_cover(G, [0])
+#     temp_G = G.copy()                           # temp_G = {0:[1,2,3], 1:[0,2], 2:[0,1], 3:[0]}
+#     for node in cover:
+#         temp_G.remove_incident_edges(node)      # temp_G.remove_incident_edges(0)
+#     if temp_G.has_no_edges():                   # if temp_G.has_no_edges() true means, "cover" is a vertex_cover 
+#         return True
+#     return False
 
-
-def is_vertex_cover(G, cover):                  # if is_vertex_cover(G, [0])
-    temp_G = G.copy()                           # temp_G = {0:[1,2,3], 1:[0,2], 2:[0,1], 3:[0]}
-    for node in cover:
-        temp_G.remove_incident_edges(node)      # temp_G.remove_incident_edges(0)
-    if temp_G.has_no_edges():                   # if temp_G.has_no_edges() true means, "cover" is a vertex_cover 
-        return True
-    return False
 
 def power_set(elements):
     if elements == []:
@@ -102,11 +91,13 @@ def power_set(elements):
     #                      = [[3, 2, 1], [2, 1], [3, 1], [1]] + [[3, 2], [2], [3], []]
     #                      = [[3, 2, 1], [2, 1], [3, 1], [1], [3, 2], [2], [3], []]
 
+
 def add_to_each(sets, element):
     my_sets = sets.copy()
     for my_set in my_sets:
         my_set.append(element)
     return my_sets
+
 
 def create_random_graph(n, m):
     G = Graph()
@@ -119,12 +110,52 @@ def create_random_graph(n, m):
         G.add_edge(edge[0],edge[1])
     return G
 
+
 def create_edge_list(n):
     edges = []
     for i in range(n):
         for j in range(i+1,n):
             edges.append((i,j))
     return edges
+
+
+############################## Practice #################################
+
+
+# def vertex_cover(G):
+#     vc = list(G.adj.keys())
+#     nodes = power_set(vc)
+#     for node in nodes:
+#         cg = G.copy()
+#         for elem in node:
+#             cg.remove_incident_edges(elem)
+#         if cg.has_no_edges() and len(node) < len(vc):
+#             vc = node
+#     return vc
+
+
+def vertex_cover(G):
+    vc = list(G.adj.keys())
+    nodes = power_set(vc)
+    for node in nodes:
+        cg = G.copy()
+        for elem in node:
+            cg.remove_incident_edges(elem)
+        if cg.has_no_edges() and len(node) < len(vc):
+            vc = node
+    return vc
+
+
+def power_set(nodes):
+    if nodes == []:
+        return [[]]
+    return add_to_each(power_set(nodes[1:]), nodes[0]) + power_set(nodes[1:])
+
+
+def add_to_each(nodes, node):
+    for ith_node in nodes:
+        ith_node.append(node)
+    return nodes
 
 
 # Independent set  
@@ -142,11 +173,13 @@ graph.add_node(0)
 graph.add_node(1)
 graph.add_node(2)
 graph.add_node(3)
+graph.add_node(4)
 
 graph.add_edge(0, 1)
 graph.add_edge(0, 2)
 graph.add_edge(0, 3)
 graph.add_edge(1, 2)
+graph.add_edge(3, 4)
 
 vc = vertex_cover(graph)
 print(vc)
