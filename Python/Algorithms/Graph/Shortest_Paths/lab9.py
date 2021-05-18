@@ -204,14 +204,14 @@ G.add_edge("C","B",5)
 G.add_edge("C","D",30)
 G.add_edge("B","D",10)
 
-print(G.adj)
-print(G.weights)
+# print(G.adj)
+# print(G.weights)
 
-bell = Bellman_Ford.bellman_ford(G, "A")
-bell_apro = Bellman_Ford.bellman_ford_approx(G, "A", 2)
+# bell = Bellman_Ford.bellman_ford(G, "A")
+# bell_apro = Bellman_Ford.bellman_ford_approx(G, "A", 2)
 
-print(bell)
-print(bell_apro)
+# print(bell)
+# print(bell_apro)
 
 dij = dijkstra(G, "A")
 print(dij)
