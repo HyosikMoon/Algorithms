@@ -69,6 +69,22 @@ X[:,3] = le_Chol.transform(X[:,3])
 
 X[0:5]
 
+# ex. 
+# >>> from sklearn import preprocessing
+# >>> le = preprocessing.LabelEncoder()
+# >>> le.fit(["Paris", "Tokyo"])
+# LabelEncoder()
+# >>> list(le.clsses_)
+# Traceback (most recent call last):
+#   File "<stdin>", line 1, in <module>
+# AttributeError: 'LabelEncoder' object has no attribute 'clsses_'
+# >>> list(le.classes_) 
+# ['Paris', 'Tokyo']
+# >>> le.transform(["Paris", "Tokyo"])
+# array([0, 1])
+# >>> list(le.inverse_transform([1,0]))
+# ['Tokyo', 'Paris']
+
 # Now we can fill the target variable.
 y = my_data["Drug"]
 y[0:5]
@@ -96,6 +112,12 @@ print('Shape of X training set {}'.format(X_testset.shape),'&',' Size of Y train
 # Inside of the classifier, specify criterion="entropy" so we can see the information gain of each node.
 drugTree = DecisionTreeClassifier(criterion="entropy", max_depth = 4)
 drugTree # it shows the default parameters
+# DecisionTreeClassifier(class_weight=None, criterion='entropy', max_depth=4,
+#             max_features=None, max_leaf_nodes=None,
+#             min_impurity_decrease=0.0, min_impurity_split=None,
+#             min_samples_leaf=1, min_samples_split=2,
+#             min_weight_fraction_leaf=0.0, presort=False, random_state=None,
+#             splitter='best')
 # Next, we will fit the data with the training feature matrix X_trainset and training response vector y_trainset
 drugTree.fit(X_trainset,y_trainset)
 
