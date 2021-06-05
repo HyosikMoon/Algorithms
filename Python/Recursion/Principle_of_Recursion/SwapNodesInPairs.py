@@ -27,13 +27,29 @@ class Solution(object):
         # return second_node
 
 
-        ## Recursive review1
+        # ## Recursive review1
+        # if not head or not head.next:
+        #     return head
+        
+        # first_node = head
+        # second_node = head.next
+
+        # first_node.next = self.swapPairs(second_node.next)
+        # second_node.next = first_node
+
+        # return second_node
+
+
+        ## Recursion review 2
+        # Base case
         if not head or not head.next:
             return head
-        
+
+        # Setting
         first_node = head
         second_node = head.next
 
+        # Swap
         first_node.next = self.swapPairs(second_node.next)
         second_node.next = first_node
 
@@ -67,21 +83,43 @@ class Solution(object):
         # return dummy.next
 
 
-        ## Iteration review 
+        # ## Iteration review 
+        # dummy = ListNode(-1)
+        # dummy.next = head
+
+        # prev_node = dummy
+        # while head and head.next:
+        #     # Setting
+        #     first_node = head
+        #     second_node = head.next
+
+        #     # Swap
+        #     prev_node.next = second_node
+        #     first_node.next = second_node.next
+        #     second_node.next = first_node
+            
+        #     # Preparation for next step
+        #     prev_node = first_node
+        #     head = first_node.next
+
+        # return dummy.next
+
+        ## Interation review 2
         dummy = ListNode(-1)
         dummy.next = head
 
         prev_node = dummy
+
         while head and head.next:
             # Setting
             first_node = head
             second_node = head.next
+            prev_node.next = second_node
 
             # Swap
-            prev_node.next = second_node
             first_node.next = second_node.next
             second_node.next = first_node
-            
+
             # Preparation for next step
             prev_node = first_node
             head = first_node.next
