@@ -27,7 +27,23 @@ class Solution(object):
         # return second_node
 
 
-        # ## Recursive review1
+        # ## Recursion review 1
+        # # Base case
+        # if head and head.next:
+        #     return head
+
+        # # Setting
+        # first_node = head
+        # second_node = head.next
+
+        # # Swap
+        # first_node.next = self.swapPairs(second_node.next)
+        # second_node.next = first_node
+
+        # return second_node
+
+
+        # ## Recursion review 2
         # if not head or not head.next:
         #     return head
         
@@ -40,7 +56,7 @@ class Solution(object):
         # return second_node
 
 
-        ## Recursion review 2
+        ## Recursion review 3
         # Base case
         if not head or not head.next:
             return head
@@ -83,7 +99,7 @@ class Solution(object):
         # return dummy.next
 
 
-        # ## Iteration review 
+        # ## Iteration review 1
         # dummy = ListNode(-1)
         # dummy.next = head
 
@@ -104,7 +120,31 @@ class Solution(object):
 
         # return dummy.next
 
-        ## Interation review 2
+        # ## Interation review 2
+        # dummy = ListNode(-1)
+        # dummy.next = head
+
+        # prev_node = dummy
+
+        # while head and head.next:
+        #     # Setting
+        #     first_node = head
+        #     second_node = head.next
+        #     prev_node.next = second_node
+
+        #     # Swap
+        #     first_node.next = second_node.next
+        #     second_node.next = first_node
+
+        #     # Preparation for next step
+        #     prev_node = first_node
+        #     head = first_node.next
+
+        # return dummy.next
+
+
+        ## Iteration review 3
+        # Precondition
         dummy = ListNode(-1)
         dummy.next = head
 
@@ -114,11 +154,11 @@ class Solution(object):
             # Setting
             first_node = head
             second_node = head.next
-            prev_node.next = second_node
 
             # Swap
             first_node.next = second_node.next
             second_node.next = first_node
+            prev_node.next = second_node
 
             # Preparation for next step
             prev_node = first_node
