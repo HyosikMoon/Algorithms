@@ -15,14 +15,48 @@ sum_tail_recursion([0,1,2])
 
 
 # Definition for a binary tree node.
-# class TreeNode(object):
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+class TreeNode(object):
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 class Solution(object):
     def maxDepth(self, root):
         """
         :type root: TreeNode
         :rtype: int
         """
+        if not root:
+            return 0
+
+        def helper(root, dept):
+            if not root:
+                return dept
+
+            return max(helper(root.left, 1 + dept), helper(root.right, 1 + dept))
+
+        return helper(root, 0)
+
+
+        ## Solution DFS
+        if root:
+            return 0
+        else:
+            left_dept = self.maxDepth(root.left)
+            right_dept = self.maxDepth(root.right)
+
+        return max(left_dept, right_dept) + 1
+
+
+        ## Solution Iteration
+        
+
+
+        ## Solution 2
+        # return max(map(self.maxDepth, [root.left, root.right])) + 1 if root else 0
+
+node2 = TreeNode(val = 10)
+node3 = TreeNode(val = 30)
+node1 = TreeNode(0, node2, node3)
+
+Solution().maxDepth(node1)
