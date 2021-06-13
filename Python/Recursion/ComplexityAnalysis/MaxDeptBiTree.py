@@ -39,20 +39,33 @@ class Solution(object):
 
 
         ## Solution DFS
-        if root:
-            return 0
-        else:
-            left_dept = self.maxDepth(root.left)
-            right_dept = self.maxDepth(root.right)
+        # if not root:
+        #     return 0
+        # else:
+        #     left_dept = self.maxDepth(root.left)
+        #     right_dept = self.maxDepth(root.right)
 
-        return max(left_dept, right_dept) + 1
+        # return max(left_dept, right_dept) + 1
 
 
         ## Solution Iteration
-        
+        # stack = []
+        # if stack is not None:
+        #     stack.append((1, root))
+
+        # dept = 0
+        # while stack != []:
+        #     current_dept, root = stack.pop()
+        #     if root is not None:
+        #         dept = max(current_dept, dept)
+        #         stack.append((current_dept + 1, root.left))
+        #         stack.append((current_dept + 1, root.right))
+
+        # return dept
 
 
-        ## Solution 2
+
+        ## Solution else.
         # return max(map(self.maxDepth, [root.left, root.right])) + 1 if root else 0
 
 node2 = TreeNode(val = 10)
