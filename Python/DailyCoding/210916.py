@@ -17,4 +17,5 @@ class Solution:
                 d[n] = i
 
 obj = Solution()
+
 print(obj.twoSum([1,3,3], 6))
