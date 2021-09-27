@@ -61,9 +61,34 @@ class Solution:
             l -= 1; r += 1
         return s[l+1:r]
 
+    def longestPalindrome3(self, s):
+        output = s[0]
+        for i in range(len(s)):
+            # odd, -1 <- criterion -> +1
+            tem = self.helper3(s, i, i)
+            if len(tem) > len(output):
+                output = tem
+            # even, -1 <- criterion -> +1
+            tem = self.helper3(s, i, i+1)
+            if len(tem) > len(output):
+                output = tem
+        return output
+    
+    def helper3(self, s, i, j):
+        if i == j:
+            while (i >= 0 and j < len(s) and s[i] == s[j]):
+                i -= 1; j += 1
+            return s[i+1:j]
+        else:
+            while (i >= 0 and j < len(s) and s[i] == s[j]):
+                i -= 1; j += 1
+            return s[i+1:j]
 
 # sol = Solution()
 # sol.longestPalindrome("zdefeeeeeeeeasd")
 
-sol2 = Solution()
-sol2.longestPalindrome2("abcba")
+# sol2 = Solution()
+# sol2.longestPalindrome2("abcba")
+
+sol3 = Solution()
+sol3.longestPalindrome3("abaaaa")
