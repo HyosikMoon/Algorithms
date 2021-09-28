@@ -11,4 +11,8 @@
  
 class Solution:
     def convert(self, s, numRows):
-        
+        # while r < len(s):
+        #   a = ['','', ... ,'',''] // an
+        #   a0, a1, ... , a_(n-1), a_(n-2), ... , 
+        #   s[0], s[1], ... s[n-1], s[n-2], s[n-3], ... , s[0]
+        #   a0 ++ a1 ++ ... ++ an
