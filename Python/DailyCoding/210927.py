@@ -10,7 +10,7 @@
 # string convert(string s, int numRows);
  
 class Solution:
-    # def convert(self, s, numRows):
+    def convert(self, s, numRows):
         # while r < len(s):
         #   a = ['','', ... ,'',''] // an
         #   a0, a1, ... , a_(n-1), a_(n-2), ... , 
@@ -18,6 +18,12 @@ class Solution:
         #   a0 ++ a1 ++ ... ++ an
         # 
         # 
+
+
+
+
+
+
 
 
 
