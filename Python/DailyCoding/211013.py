@@ -4,3 +4,27 @@
 
 class Solution:
     def isPalindrome(self, x):
+        # initial condition
+        if x < 0:
+            return False
+        x = str(x)
+        if len(x) <= 1:
+            return True
+
+        if len(x)%2 == 1:
+            c = len(x)//2
+            i = 0
+            while (c-i >= 0 and c+i < len(x)):
+                if x[c-i] != x[c+i]:
+                    return False
+                i += 1
+            return True
+        else:
+            s = 0
+            e = -1
+            i = 0
+            while (i < len(x)//2):
+                if x[s+i] != x[e-i]:
+                    return False
+                i += 1
+            return True
