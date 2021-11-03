@@ -22,24 +22,30 @@ class Solution:
     # Solution 2. From the end x -> until find the same heigh[x]
     def maxArea(self, height):
         # Find the max area
-        # area_height =  min(y1=height[i1], y2=height[i2]), length = i2 - i1
+        # Make a dictionary of heights according to indices. 
+        # Find the min height and its index
+        # -> Find the farthest index and height
+        # -> distance from two indices is the lenght, and the min height is the height of the area
+        # -> That is the biggest area of the index
+        # -> Delete the index one by one.
         
-        area = 0
-        for i, y1 in enumerate(height):
-            for j, y2 in enumerate(height[i+1:]):
-                # end index of height[i+1:]
-                e = len(height[i+1:]) - (j+1)
-                if (height[j] == height[e]):
-                    area_length = e - (j+1)
-                    area_height = height[e]
-                    sub_area = area_length * area_height
-                    if sub_area > area:
-                        area = sub_area
-                        continue
-                else:
-                    continue
+        # area = 0
+        # reverse_height = height[::-1]
+        # length = len(height)
+        # for i, y1 in enumerate(height):
+        #     for j, y2 in enumerate(reverse_height):
+        #         area_height = min(y1,y2)
+        #         if (i+j != length and y1 <= y2):
+        #             area_length = length - (i+j)
+        #             sub_area = area_length * y1
+        #             if sub_area > area:
+        #                 area = sub_area
+        #                 break
+        #         else:
+        #             continue
 
-        return area
+
+        # return area
 
     # def maxArea(self, height):
     #     """
