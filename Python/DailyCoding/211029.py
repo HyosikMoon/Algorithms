@@ -22,30 +22,36 @@ class Solution:
     # Solution 2. From the end x -> until find the same heigh[x]
     def maxArea(self, height):
         # Find the max area
-        # Make a dictionary of heights according to indices. 
-        # Find the min height and its index
-        # -> Find the farthest index and height
+        # step1. Make a dictionary of heights according to indices. 
+        # step2. Find the min height and its index O(n)
+        # -> Find having the same height and farthest index 
         # -> distance from two indices is the lenght, and the min height is the height of the area
         # -> That is the biggest area of the index
         # -> Delete the index one by one.
         
-        # area = 0
-        # reverse_height = height[::-1]
-        # length = len(height)
-        # for i, y1 in enumerate(height):
-        #     for j, y2 in enumerate(reverse_height):
-        #         area_height = min(y1,y2)
-        #         if (i+j != length and y1 <= y2):
-        #             area_length = length - (i+j)
-        #             sub_area = area_length * y1
-        #             if sub_area > area:
-        #                 area = sub_area
-        #                 break
-        #         else:
-        #             continue
+        # step1. 
+        index_dict = {}
+        for i, y in enumerate(height):
+            index_dict[i] = y
 
+        # step2. 
+        area = 0
+        max_index = len(height) - 1
+        # Last index is not considered.
+        while len(index_dict) != 1:
+            min_index = min(index_dict, key=index_dict.get)
+            length = max(abs(max_index - min_index), abs(min_index))
+            height = index_dict.pop(min_index)
+            new_area = length * height
+            if new_area > area:
+                area = new_area
 
-        # return area
+        return area
+
+        # “how to find the minimum value in a dictionary python” Code Answer's
+        # d = {"A":3, "B":1, "C":100}
+        # find key with lowest value.
+        # best_key = min(d, key=d. get)
 
     # def maxArea(self, height):
     #     """
