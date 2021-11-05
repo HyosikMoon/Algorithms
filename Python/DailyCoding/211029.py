@@ -39,14 +39,24 @@ class Solution:
         max_index = len(height) - 1
         # Last index is not considered.
         while len(index_dict) != 1:
+            if len(index_dict) == 2:
+                min_index = min(index_dict, key=index_dict.get)
+                length = max(abs(max(index_dict) - min_index), abs(min(index_dict) -min_index))
+                height = index_dict.pop(min_index)
+                new_area = length * height
+                if new_area > area:
+                    area = new_area
+                break
             min_index = min(index_dict, key=index_dict.get)
-            length = max(abs(max_index - min_index), abs(min_index))
+            length = max(abs(max(index_dict) - min_index), abs(min(index_dict) -min_index))
             height = index_dict.pop(min_index)
             new_area = length * height
             if new_area > area:
                 area = new_area
 
         return area
+
+
 
         # “how to find the minimum value in a dictionary python” Code Answer's
         # d = {"A":3, "B":1, "C":100}
