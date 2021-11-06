@@ -33,13 +33,13 @@ class Solution:
         index_dict = {}
         for i, y in enumerate(height):
             index_dict[i] = y
-
+        print(index_dict, min(index_dict))
         # step2. 
         area = 0
         max_index = len(height) - 1
         # Last index is not considered.
         while len(index_dict) != 1:
-            if len(index_dict) == 2:
+            if len(index_dict) <= 2:
                 min_index = min(index_dict, key=index_dict.get)
                 length = max(abs(max(index_dict) - min_index), abs(min(index_dict) -min_index))
                 height = index_dict.pop(min_index)
