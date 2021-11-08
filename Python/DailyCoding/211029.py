@@ -62,24 +62,49 @@ class Solution:
         # find key with lowest value.
         # best_key = min(d, key=d. get)
 
-    # O(n) Solution.
     def maxArea(self, height):
-        """
-        :type height: List[int]
-        :rtype: int
-        """
-        MAX = 0 
         x = len(height) - 1
         y = 0
-        while x != y:
-            if height[x] > height[y]:
-                area = height[y] * (x - y)
-                y += 1
+        max = x * y
+        x1 = 0
+        x2 = len(height) - 1
+        while x1 != x2:
+            if (height[x1] > height[x2]):
+                y = height[x2]
+                x = x2 - x1
+                area = x * y
+                if area > max:
+                    max = area
+                x2 -= 1
             else:
-                area = height[x] * (x - y)
-                x -= 1
-            MAX = max(MAX, area)
-        return MAX
+                y = height[x1]
+                x = x2 - x1
+                area = x * y
+                if area > max:
+                    max = area
+                x1 += 1
+        return max
+
+
+
+    # # O(n) Solution.
+    # def maxArea(self, height):
+    #     """
+    #     :type height: List[int]
+    #     :rtype: int
+    #     """
+    #     MAX = 0 
+    #     x = len(height) - 1
+    #     y = 0
+    #     while x != y:
+    #         if height[x] > height[y]:
+    #             area = height[y] * (x - y)
+    #             y += 1
+    #         else:
+    #             area = height[x] * (x - y)
+    #             x -= 1
+    #         MAX = max(MAX, area)
+    #     return MAX
 
 sol = Solution()
 sol.maxArea([1,8,6,2,5,4,8,3,7])
