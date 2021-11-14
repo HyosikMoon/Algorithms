@@ -11,8 +11,10 @@
 class Solution:
     def intToRoman(self, num):
         # step1. 10^3 = ?, 10^2, 10^1, 10^0 => ?
-        # step2. 7 symbols (1,5,10,15,100,500,1000)
+        # step2. 7 symbols (1,5,10,50,100,500,1000)
+        #                 - I, V, X, L, C, D, M
         # step3. exception -> 4, 9, 40, 90, 400, 900
+        #                  - IV, IX, XL, XC, CD, CM
         # step4. How to combine them?
 
         
