@@ -17,7 +17,10 @@ class Solution:
         #                  - IV, IX, XL, XC, CD, CM
         # step4. How to combine them?
 
-        
+        # 10^3 -> num * M
+        # 10^2 -> C CC CCC CD D DC DCC DCCC M
+        # 10^1 -> X XX XXX XL L LX LXX LXXX XC
+        # 10^0 -> I II III IV V VI VII VIII IX
 
 
 
