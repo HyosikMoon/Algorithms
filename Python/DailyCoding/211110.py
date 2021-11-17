@@ -9,70 +9,64 @@
 
 
 class Solution:
-    def intToRoman(self, num):
-        # step1. 10^3 = ?, 10^2, 10^1, 10^0 => ?
-        # step2. 7 symbols (1,5,10,50,100,500,1000)
-        #                 - I, V, X, L, C, D, M
-        # step3. exception -> 4, 9, 40, 90, 400, 900
-        #                  - IV, IX, XL, XC, CD, CM
-        # step4. How to combine them?
+    # def intToRoman(self, num):
+    #     # step1. 10^3 = ?, 10^2, 10^1, 10^0 => ?
+    #     # step2. 7 symbols (1,5,10,50,100,500,1000)
+    #     #                 - I, V, X, L, C, D, M
+    #     # step3. exception -> 4, 9, 40, 90, 400, 900
+    #     #                  - IV, IX, XL, XC, CD, CM
+    #     # step4. How to combine them?
 
-        # 10^3 -> num * M
-        # 10^2 -> C CC CCC CD D DC DCC DCCC CM
-        # 10^1 -> X XX XXX XL L LX LXX LXXX XC
-        # 10^0 -> I II III IV V VI VII VIII IX
+    #     # 10^3 -> num * M
+    #     # 10^2 -> C CC CCC CD D DC DCC DCCC CM
+    #     # 10^1 -> X XX XXX XL L LX LXX LXXX XC
+    #     # 10^0 -> I II III IV V VI VII VIII IX
 
-        # Make tables
-        dicts = {3000:"MMM", 2000:"MM", 1000:"M", 900:"CM", 800:"DCCC", 700:"DCC", 600:"DC", 500:"D", 400:"CD", 300:"CCC", 200:"CC", 100:"C", 
-                90:"XC", 80:"LXXX", 70:"LXX", 60:"LX", 50:"L", 40:"XL", 30:"XXX", 20:"XX", 10:"X",
-                9:"IX", 8:"VIII", 7:"VII", 6:"VI", 5:"V", 4:"IV", 3:"III", 2:"II", 1:"I"}
+    #     # Make tables
+    #     dicts = {3000:"MMM", 2000:"MM", 1000:"M", 900:"CM", 800:"DCCC", 700:"DCC", 600:"DC", 500:"D", 400:"CD", 300:"CCC", 200:"CC", 100:"C", 
+    #             90:"XC", 80:"LXXX", 70:"LXX", 60:"LX", 50:"L", 40:"XL", 30:"XXX", 20:"XX", 10:"X",
+    #             9:"IX", 8:"VIII", 7:"VII", 6:"VI", 5:"V", 4:"IV", 3:"III", 2:"II", 1:"I"}
 
-        # Setting
-        output = ""
-        denominator = 1000
-        digit = 1000
-        values = []
+    #     # Setting
+    #     output = ""
+    #     denominator = 1000
+    #     digit = 1000
+    #     values = []
 
-        # Extract digit values
-        while (denominator >= 1):
-            values.append(num//denominator)
-            num = num % denominator
-            denominator = denominator//10
+    #     # Extract digit values
+    #     while (denominator >= 1):
+    #         values.append(num//denominator)
+    #         num = num % denominator
+    #         denominator = denominator//10
         
 
-        while values != []:
-            value = values[0]*digit
-            digit = digit//10
-            values.remove(values[0])
-            if value == 0:
-                continue
-            else:
-                output = output + dicts[value]
+    #     while values != []:
+    #         value = values[0]*digit
+    #         digit = digit//10
+    #         values.remove(values[0])
+    #         if value == 0:
+    #             continue
+    #         else:
+    #             output = output + dicts[value]
 
-        return output
-
-sol = Solution()
-sol.intToRoman(2000)
-
-
-
-
-
-
-
-
-
+    #     return output
 
 
 # Sample solution.
 # class Solution:
-#     def intToRoman(self, num: int) -> str:
-#         d = {1000: 'M', 900: 'CM', 500: 'D', 400: 'CD', 100: 'C', 90: 'XC', 50: 'L', 40: 'XL', 10: 'X', 9: 'IX', 5: 'V', 4: 'IV', 1: 'I'} 
+    def intToRoman(self, num: int) -> str:
+        d = {1000: 'M', 900: 'CM', 500: 'D', 400: 'CD', 100: 'C', 90: 'XC', 50: 'L', 40: 'XL', 10: 'X', 9: 'IX', 5: 'V', 4: 'IV', 1: 'I'} 
         
-#         res = ""
-        
-#         for i in d:
-#             res += (num//i) * d[i]
-#             num %= i
-        
-#         return res
+        res = ""
+
+        for i in d:
+            res += (num//i) * d[i]
+            num %= i
+
+        return res
+
+
+
+
+sol = Solution()
+sol.intToRoman(2379)
