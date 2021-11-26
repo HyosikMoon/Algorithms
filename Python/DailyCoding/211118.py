@@ -19,11 +19,20 @@
 
 class Solution:
     def romanToInt(self, s):
+        d = {'M':1000, 'CM':900, 'D':500, 'CD':400, 'C':100, 'XC':90, 'L':50, 'XL':40, 'X':10, 'IX':9, 'V':5, 'IV':4, 'I':1} 
 
-        #Busy for the 3DB3, 3MI3 Assignments..
+        res = 0
+        for c in d:
+            length = len(c)
+            while c == s[:length]:
+                res += d[c]
+                s = s[length:]
+
+        return res
 
 
-
+sol = Solution()
+sol.romanToInt('MMMCCXXXIX')
 
 
 
