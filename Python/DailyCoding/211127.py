@@ -18,12 +18,23 @@
 class Solution:
     def containsDuplicate(self, nums):
         d = []
-        for e in nums:
-            if e in d:
+        length = len(nums)
+        while length != 0:
+            elem = nums.pop()
+            if elem in nums:
                 return True
-            else:
-                d.append(e)
+            length -= 1
         return False
+
+
+        # d = []
+        # for e in nums:
+        #     if e in d:
+        #         return True
+        #     else:
+        #         d.append(e)
+        # return False
+
 
 sol = Solution()
 sol.containsDuplicate([1,1,1,3,3,4,3,2,4,2])
