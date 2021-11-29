@@ -17,14 +17,20 @@
 
 class Solution:
     def containsDuplicate(self, nums):
-        d = []
-        length = len(nums)
-        while length != 0:
-            elem = nums.pop()
-            if elem in nums:
-                return True
-            length -= 1
-        return False
+        if len(set(nums)) == len(nums):
+            return False
+        else:
+            return True
+
+        # d = []
+        # length = len(nums)
+        # while length != 0:
+        #     elem = nums.pop()
+        #     d.append(elem)
+        #     if elem in nums:
+        #         return True
+        #     length -= 1
+        # return False
 
 
         # d = []
