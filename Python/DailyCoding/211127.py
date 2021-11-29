@@ -1,18 +1,29 @@
-# Write a function to find the longest common prefix string amongst an array of strings.
-
-# If there is no common prefix, return an empty string "".
+# Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
 
  
 
 # Example 1:
 
-# Input: strs = ["flower","flow","flight"]
-# Output: "fl"
+# Input: nums = [1,2,3,1]
+# Output: true
 # Example 2:
 
-# Input: strs = ["dog","racecar","car"]
-# Output: ""
-# Explanation: There is no common prefix among the input strings.
+# Input: nums = [1,2,3,4]
+# Output: false
+# Example 3:
+
+# Input: nums = [1,1,1,3,3,4,3,2,4,2]
+# Output: true
 
 class Solution:
-    def longestCommonPrefix(self, strs):
+    def containsDuplicate(self, nums):
+        d = []
+        for e in nums:
+            if e in d:
+                return True
+            else:
+                d.append(e)
+        return False
+
+sol = Solution()
+sol.containsDuplicate([1,1,1,3,3,4,3,2,4,2])
