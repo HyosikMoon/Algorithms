@@ -34,3 +34,14 @@ class Solution:
 
 sol = Solution()
 sol.isAnagram("anagram", "anagram")
+
+    # Solution2.
+    # dic1, dic2 = {}, {}
+    # for item in s:
+    #     dic1[item] = dic1.get(item, 0) + 1
+    # for item in t:
+    #     dic2[item] = dic2.get(item, 0) + 1
+    # return dic1 == dic2
+
+    # Solution3.
+    #     return sorted(s) == sorted(t)
