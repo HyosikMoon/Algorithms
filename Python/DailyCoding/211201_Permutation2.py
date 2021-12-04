@@ -17,3 +17,22 @@
 class Solution:
     def checkInclusion(self, s1, s2):
         
+        # Compare every s2 in s1 from each index.
+        length = len(s1)
+        for i, c in enumerate(s2):
+            # Variable setting
+            word = s2[i:i+length]
+            dict1, dict2 = {}, {}
+
+            # Make two dicts for compare s1 and the word in s2
+            for char in s1:
+                dict1[char] = dict1.get(char, 0) + 1
+            for char in word:
+                dict2[char] = dict2.get(char, 0) + 1
+            
+            # Compare two dicts
+            if dict1 == dict2:
+                return True
+        
+        # There is no permuation in s2.
+        return False
