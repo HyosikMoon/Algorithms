@@ -75,28 +75,63 @@ class Solution:
         # return False
 
 
-        # Solution 4 - O(len(s2))
-        # Dynamic programming, Use the previous information and
-        # change the necessary things.
-        A = [ord(x) - ord('a') for x in s1]
-        B = [ord(x) - ord('a') for x in s2]
+        # # Solution 4 - O(len(s2))
+        # # Dynamic programming, Use the previous information and
+        # # change the necessary things.
+        # A = [ord(x) - ord('a') for x in s1]
+        # B = [ord(x) - ord('a') for x in s2]
         
-        target = [0] * 26
-        for x in A:
-            target[x] += 1
+        # target = [0] * 26
+        # for x in A:
+        #     target[x] += 1
         
-        window = [0] * 26
-        for i, x in enumerate(B):
-            window[x] += 1
-            if i >= len(A):
-                window[B[i - len(A)]] -= 1
-            if window == target:
+        # window = [0] * 26
+        # for i, x in enumerate(B):
+        #     window[x] += 1
+        #     if i >= len(A):
+        #         window[B[i - len(A)]] -= 1
+        #     if window == target:
+        #         return True
+        # return False
+
+
+        # Solution 5, 
+        # First, convert alphabets to ascii code - 65 ('a')
+        s2_ascii = [ord(i) - ord('a') for i in s2]
+        s1_ascii = [ord(i) - ord('a') for i in s1]
+
+        # Second, count the asacii letters in a alphabet size window
+        base2 = [0]*26
+        base1 = [0]*26
+        base_window = [0]*26
+        for x in s2_ascii:
+            base2[x] += 1
+        for x in s1_ascii:
+            base1[x] += 1
+
+        # Third, compared the base1 with a window frame of base2
+        window_size = len(s1)
+        cnt = len(s2) - window_size + 1
+
+        # Initial condition
+        window = base2[:window_size]
+        for x in window:
+                base_window[x] += 1
+        if base1 == base_window:
+            return True
+
+        for i in range(1, cnt):
+            # First and Last indices update.
+            window = base2[i:window_size+i]
+            base_window[window[i-1]] -= 1
+            base_window[window[-1]] += 1
+            if base1 == base_window:
                 return True
         return False
 
 
+
+
+
 sol = Solution()
 sol.checkInclusion('ab','eidbaooo')
-
-
-# Busy for the final projects.
