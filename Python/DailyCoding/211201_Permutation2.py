@@ -114,17 +114,17 @@ class Solution:
         cnt = len(s2) - window_size + 1
 
         # Initial condition
-        window = base2[:window_size]
-        for x in window:
-                base_window[x] += 1
+        window = s2_ascii[:window_size]
+        for i in window:
+            base_window[i] += 1
         if base1 == base_window:
             return True
 
         for i in range(1, cnt):
             # First and Last indices update.
-            window = base2[i:window_size+i]
-            base_window[window[i-1]] -= 1
-            base_window[window[-1]] += 1
+            base_window[s2_ascii[i-1]] -= 1
+            base_window[s2_ascii[i+window_size-1]] += 1
+
             if base1 == base_window:
                 return True
         return False
@@ -134,4 +134,4 @@ class Solution:
 
 
 sol = Solution()
-sol.checkInclusion('ab','eidbaooo')
+sol.checkInclusion('abo','eidbaooo')
