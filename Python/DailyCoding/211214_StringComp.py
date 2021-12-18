@@ -25,8 +25,23 @@
 
 class Solution:
     def compress(self, chars):
+        s = []
 
+        # Initial condition
+        if len(chars) == 1:
+            s.append(chars[0])
+            return 1
 
+        # Count the number of characters in a list in a sequential way.
+        # for i, e in chars:
+        #     # append element and its counter number
+        #     # cnt = 0
+        #     # if chars[i] == chars[i+1]:
+        #     #     cnt += 1
+        #     #     s.append(e)
+        #     #     s[] += s.append(cnt+1)
+        #     # else:
+        #     #     s.append(e)
 
 
 
