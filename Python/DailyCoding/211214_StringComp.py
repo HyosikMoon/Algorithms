@@ -27,10 +27,38 @@ class Solution:
     def compress(self, chars):
         s = []
 
-        # Initial condition
+        # Initial condition1 - for single element
         if len(chars) == 1:
             s.append(chars[0])
-            return 1
+            return s
+
+        # Initial condition2
+        s.append(chars[0])
+        s.append(0)
+
+        # Compare the next element with the previous element
+        # Cound them whether or not they are same
+        for c in chars:
+            if s[-2] == c:
+                s[-1] += 1
+            else:
+                if s[-1] == 1:
+                    s[-1] = c
+                    s.append(1)
+                else:
+                    s[-1] = str(s[-1])
+                    s.append(c)
+                    s.append(1)
+
+        if s[-1] == 1:
+            s.pop()
+        else:
+            s[-1] = str(s[-1])
+
+        return s
+
+sol = Solution()
+sol.compress(["a","a","b","b","c","c","c"])
 
         # Count the number of characters in a list in a sequential way.
         # for i, e in chars:
