@@ -29,8 +29,7 @@ class Solution:
 
         # Initial condition1 - for single element
         if len(chars) == 1:
-            s.append(chars[0])
-            return s
+            return len(chars)
 
         # Initial condition2
         s.append(chars[0])
@@ -54,26 +53,40 @@ class Solution:
             s.pop()
         else:
             s[-1] = str(s[-1])
+           
+        for i, e in enumerate(s):
+            chars[i] = s[i]
+        chars.pop() 
 
-        return s
+        return chars
 
 sol = Solution()
-sol.compress(["a","a","b","b","c","c","c"])
-
-        # Count the number of characters in a list in a sequential way.
-        # for i, e in chars:
-        #     # append element and its counter number
-        #     # cnt = 0
-        #     # if chars[i] == chars[i+1]:
-        #     #     cnt += 1
-        #     #     s.append(e)
-        #     #     s[] += s.append(cnt+1)
-        #     # else:
-        #     #     s.append(e)
+sol.compress(["a"])
 
 
+        # """
+        # :type chars: List[str]
+        # :rtype: int
+        # """
+        # st = i = 0
+        # while i < len(chars):
+        #     while i < len(chars) and chars[i] == chars[st]:
+        #         i += 1
+        #     if i - st == 1:
+        #         st = i
+        #     else:
+        #         chars[st + 1 : i] = str(i - st)
+        #         st = st + 2
+        #         i = st
 
 
+
+# Input
+# ["a","b","b","b","b","b","b","b","b","b","b","b","b"]
+# Output
+# ["a","b","12","b","b","b","b","b","b","b","b","b"]
+# Expected
+# ["a","b","1","2"]
 
 
 
