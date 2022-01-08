@@ -25,59 +25,58 @@
 
 class Solution:
     def compress(self, chars):
-        s = []
+        # s = []
 
-        # Initial condition1 - for single element
-        if len(chars) == 1:
-            return len(chars)
+        # # Initial condition1 - for single element
+        # if len(chars) == 1:
+        #     return len(chars)
 
-        # Initial condition2
-        s.append(chars[0])
-        s.append(0)
+        # # Initial condition2
+        # s.append(chars[0])
+        # s.append(0)
 
-        # Compare the next element with the previous element
-        # Cound them whether or not they are same
-        for c in chars:
-            if s[-2] == c:
-                s[-1] += 1
-            else:
-                if s[-1] == 1:
-                    s[-1] = c
-                    s.append(1)
-                else:
-                    s[-1] = str(s[-1])
-                    s.append(c)
-                    s.append(1)
+        # # Compare the next element with the previous element
+        # # Find them whether or not they are same
+        # for c in chars:
+        #     if s[-2] == c:
+        #         s[-1] += 1
+        #     else:
+        #         if s[-1] == 1:
+        #             s[-1] = c
+        #             s.append(1)
+        #         else:
+        #             s[-1] = str(s[-1])
+        #             s.append(c)
+        #             s.append(1)
 
-        if s[-1] == 1:
-            s.pop()
-        else:
-            s[-1] = str(s[-1])
+        # if s[-1] == 1:
+        #     s.pop()
+        # else:
+        #     s[-1] = str(s[-1])
            
-        for i, e in enumerate(s):
-            chars[i] = s[i]
-        chars.pop() 
+        # for i, e in enumerate(s):
+        #     chars[i] = s[i]
+        # chars.pop() 
 
-        return chars
+        # return chars
+
+
+        left = i = 0
+        while i < len(chars):
+            char, length = chars[i], 1
+            while (i + 1) < len(chars) and char == chars[i + 1]:
+                length, i = length + 1, i + 1
+            chars[left] = char
+            if length > 1:
+                len_str = str(length)
+                chars[left + 1:left + 1 + len(len_str)] = len_str
+                left += len(len_str)
+            left, i = left + 1, i + 1
+        return left
 
 sol = Solution()
-sol.compress(["a"])
+sol.compress(["a","a","b","b","c","c","c"])
 
-
-        # """
-        # :type chars: List[str]
-        # :rtype: int
-        # """
-        # st = i = 0
-        # while i < len(chars):
-        #     while i < len(chars) and chars[i] == chars[st]:
-        #         i += 1
-        #     if i - st == 1:
-        #         st = i
-        #     else:
-        #         chars[st + 1 : i] = str(i - st)
-        #         st = st + 2
-        #         i = st
 
 
 
