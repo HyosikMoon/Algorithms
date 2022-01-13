@@ -3,7 +3,7 @@ import java.util.*;
 public class TestArray {
 
     public static void main(String[] args) {
-        Map<String, Integer> giIndexList = new HashMap<String, Integer>();;
+        Map<String, Integer> giIndexList = new HashMap<String, Integer>();
 
         giIndexList.put("alitame",0);
         giIndexList.put("aspertame",0);
