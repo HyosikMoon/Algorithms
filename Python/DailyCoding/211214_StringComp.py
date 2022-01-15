@@ -61,23 +61,37 @@ class Solution:
         # return chars
 
 
+        # left = i = 0
+        # while i < len(chars):
+        #     char, length = chars[i], 1
+
+        #     # Count the number of same letters
+        #     while (i + 1) < len(chars) and char == chars[i + 1]:
+        #         length, i = length + 1, i + 1
+        #     chars[left] = char
+
+        #     # Update the number of same chars 
+        #     # Update the indices for the next iteration
+        #     if length > 1:
+        #         len_str = str(length)
+        #         chars[left + 1:left + 1 + len(len_str)] = len_str
+        #         left += len(len_str)
+        #     left, i = left + 1, i + 1
+        # return left
+
+
+        # Wrong
         left = i = 0
         while i < len(chars):
-            char, length = chars[i], 1
-
-            # Count the number of same letters
-            while (i + 1) < len(chars) and char == chars[i + 1]:
+            length, char = 1, chars[i]
+            while (i+1) < len(chars) and char == chars[i+1]:
                 length, i = length + 1, i + 1
-            chars[left] = char
-
-            # Update the number of same chars 
-            # Update the indices for the next iteration
             if length > 1:
-                len_str = str(length)
-                chars[left + 1:left + 1 + len(len_str)] = len_str
-                left += len(len_str)
-            left, i = left + 1, i + 1
-        return left
+                len_str = len(str(length))
+                chars[left] = char
+                chars[left+1:left+1+len_str] = str(length)
+            left, i = length + left, i + 1
+        return length
 
 sol = Solution()
 sol.compress(["a","a","b","b","b","b"])
