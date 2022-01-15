@@ -84,7 +84,6 @@ sol.compress(["a","a","b","b","b","b"])
 
 
 
-
 # Input
 # ["a","b","b","b","b","b","b","b","b","b","b","b","b"]
 # Output
