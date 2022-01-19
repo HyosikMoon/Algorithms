@@ -24,3 +24,17 @@
 # Constraints:
 # 1 <= N <= 105
 # 1 <= arr[i] <= 103
+
+
+
+
+# def mergeSort(l, h):
+#     # l, m, h are the indices of the array to be sorted
+#     if (l < h):
+#         m = (l+h)/2
+#         mergeSort(l, m)
+#         mergeSort(m+1, h)
+#         merge(l, m, h)
+
+
+# def merge(l, m, h):
