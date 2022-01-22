@@ -28,13 +28,25 @@
 
 
 
-# def mergeSort(l, h):
-#     # l, m, h are the indices of the array to be sorted
-#     if (l < h):
-#         m = (l+h)/2
-#         mergeSort(l, m)
-#         mergeSort(m+1, h)
-#         merge(l, m, h)
+class Solution:
+    def merge(self, arr, l, m, r):
+        mr = m+1
+        temp = arr[l]
+        k = 0
+
+        while(l <= m and mr <= r):
+            if (temp <= arr[mr]):
+                temp2 = arr[k]
+                arr[k] = temp
+                temp = temp2
+                l += 1
+                k += 1
 
 
-# def merge(l, m, h):
+    def mergeSort(self, arr, l, r):
+        if (l < h):
+            m = (l+h)/2
+            mergeSort(self, arr, l, m)
+            mergeSort(self, arr, m+1, h)
+            merge(self, arr, l, m, h)
+            
