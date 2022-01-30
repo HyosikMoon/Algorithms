@@ -25,28 +25,37 @@
 # 1 <= N <= 105
 # 1 <= arr[i] <= 103
 
-
-
-
 class Solution:
     def merge(self, arr, l, m, r):
-        mr = m+1
-        temp = arr[l]
+        il = l
         k = 0
-
-        while(l <= m and mr <= r):
-            if (temp <= arr[mr]):
-                temp2 = arr[k]
-                arr[k] = temp
-                temp = temp2
-                l += 1
+        ir = m+1
+        comp1 = arr[l]
+        comp2 = arr[m+1]
+        while(il <= m and ir <= r):
+            if comp1 <= comp2:
+                temp = arr[k]
+                arr[k] = comp1
+                arr[r-ir] = temp
+                il += 1
                 k += 1
-
+                comp1 = arr[r-il]
+            else:
+                temp = arr[k]
+                arr[k] = comp2
+                arr[ir] = temp
+                k += 1
+                ir += 1
+                comp2 = arr[ir]
 
     def mergeSort(self, arr, l, r):
-        if (l < h):
-            m = (l+h)/2
-            mergeSort(self, arr, l, m)
-            mergeSort(self, arr, m+1, h)
-            merge(self, arr, l, m, h)
-            
+        if (l < r):
+            m = (l+r)/2
+            mergeSort(self, arr[l:m+1], l, m)
+            mergeSort(self, arr[m:r+1], m+1, r)
+            merge(self, arr, l, m, r)
+
+sol = Solution()
+a = [3,5,1,2,6]
+sol.merge(a,0,2,4)
+a
