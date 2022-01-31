@@ -36,26 +36,30 @@ class Solution:
             if comp1 <= comp2:
                 temp = arr[k]
                 arr[k] = comp1
-                arr[r-ir] = temp
+                arr[m+1 + il] = temp
                 il += 1
                 k += 1
-                comp1 = arr[r-il]
+                if (il <= m-1):
+                    comp1 = arr[m+1 + il]
             else:
                 temp = arr[k]
                 arr[k] = comp2
                 arr[ir] = temp
                 k += 1
                 ir += 1
-                comp2 = arr[ir]
+                if (ir <= r-1):
+                    comp2 = arr[ir]
 
     def mergeSort(self, arr, l, r):
         if (l < r):
-            m = (l+r)/2
-            mergeSort(self, arr[l:m+1], l, m)
-            mergeSort(self, arr[m:r+1], m+1, r)
-            merge(self, arr, l, m, r)
+            m = int((l+r)/2)
+            print(m)
+            self.mergeSort(arr[l:m+1], l, m)
+            self.mergeSort(arr[m:r+1], m+1, r)
+            self.merge(arr, l, m, r)
 
 sol = Solution()
 a = [3,5,1,2,6]
+# sol.mergeSort(a,0,4)
 sol.merge(a,0,2,4)
 a
