@@ -67,5 +67,5 @@ class Solution:
 sol = Solution()
 a = [9,5]
 # sol.mergeSort(a,0,4)
-sol.merge(a,0,2,4)
+sol.merge(a,0,0,1)
 a
