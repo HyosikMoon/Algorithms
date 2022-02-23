@@ -46,4 +46,5 @@ def evaluate(s: str) -> int:
     if sym != chr(0): raise Exception("unexpected character at " + str(pos))
     return v
 
-evaluate("(2 + 3) * 4 + 5")
+# evaluate("(2 + 3) * 4 + 5")
+evaluate("123")
