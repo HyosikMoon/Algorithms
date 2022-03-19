@@ -133,8 +133,6 @@ def expression():
         scope = expression()
         return Let(name, par, body, scope)
 #### implementation of "if" missing
-    # elif sym == IF:
-    #     getSym()
     else: error("expression expected")
 
 # relation(r) ::=
