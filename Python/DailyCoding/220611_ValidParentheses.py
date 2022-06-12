@@ -6,7 +6,7 @@ class Solution:
         for i in range(len(str)):
             if str[i] in dict.keys():
                 stack.append(str[i])
-            else:
+            else:          
                 if stack == [] or dict[stack.pop()] != str[i]:
                     return False
         
