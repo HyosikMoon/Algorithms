@@ -4,10 +4,12 @@ class Solution:
             return []
         if len(s) == 1:
             return [s+'_']
-
         results = []
-        while len(s) >= 2:
+        while len(s) > 2:
             results.append(s[:2])
-            if len(s) < 3:
-            s = s[]s
-        
+            s = s[2:]
+        if len(s) == 2:
+            results.append(s)
+        else:
+            results.append(s+'_')
+        return results
