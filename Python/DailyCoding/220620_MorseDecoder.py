@@ -37,7 +37,23 @@ MORSE = {
     "----.": "9",
 }
 
+# morse_decoder("... --- -- .   - . -..- -") == "Some text"
+# morse_decoder("..--- ----- .---- ---..") == "2018"
+# morse_decoder(".. -   .-- .- ...   .-   --. --- --- -..   -.. .- -.--") == "It was a good day"
 
 def morse_decoder(code):
-    # replace this for solution
-    return code
+    code = code.replace('   ', '  ')
+    print(code)
+    code = code.split(' ')
+    print(code)
+    results = []
+    for c in code:
+        if c in MORSE:
+            results.append(MORSE[c])
+        elif c == '':
+            results.append(' ')
+    print(results)
+    result = ''.join(results)
+    return result[0].upper() + result[1:]
+
+print(morse_decoder("... --- -- .   - . -..- -"))
