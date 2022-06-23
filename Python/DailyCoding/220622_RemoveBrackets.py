@@ -8,3 +8,5 @@ def remove_brackets(line):
         for m in combinations(range(len(line)), i):
             if is_balanced(cm := ''.join(k for j, k in enumerate(line) if j not in m)): return cm
     return ''
+
+print(remove_brackets('[[(}]]') == '[[]]')
