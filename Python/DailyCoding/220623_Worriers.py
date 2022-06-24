@@ -1,15 +1,16 @@
 class Warrior:
     def __init__(self, health=50, attack=5):
+        self.type = "warrior"
         self.health = health
         self.attack = attack
         self.is_alive = True
 
 class Knight(Warrior):
     def __init__(self, health=50, attack=7):
+        self.type = "kinght"
         self.health = health
         self.attack = attack
         self.is_alive = True
-
 
 def fight(unit_1, unit_2):
     round = 0
