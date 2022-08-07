@@ -162,6 +162,11 @@ class Healer(Warrior):
         else:
             other.health = other.initHealth
 
+class Warlord(Warrior):
+    def __init__(self, health=100, attack=4, defense=2):
+        super().__init__(health, attack, defense)
+
+
 class Weapon:
     def __init__(self, health=None, attack=None, \
                 defense=None, vampirism=None, heal_power=None):
@@ -208,8 +213,9 @@ class Army():
         self.units = []
 
     def add_units(self, unit, num):
-        for _ in range(num):
-            self.units.append(unit())
+        if Warlord not in self.units:
+            for _ in range(num):
+                self.units.append(unit())
         # if unit == Warrior:
         #     for i in range(num):
         #         self.units.append(Warrior())
@@ -231,6 +237,16 @@ class Army():
         # elif unit == Healer:
         #     for i in range(num):
         #         self.units.append(Healer())
+
+    def move_units(self):
+        for unit in self.units:
+            if type(unit) == Warlord:
+            # Locate Lancer at the first position
+                print ("Warlord is in the unit")
+
+                break
+
+            # Locate healers at the following positions
 
 
 class Battle():
@@ -330,90 +346,23 @@ class Battle():
 
 # ##################### TEST1 #######################
 
-# ogre = Warrior()
-# lancelot = Knight()
-# richard = Defender()
-# eric = Vampire()
-# freelancer = Lancer()
-# priest = Healer()
+ronald = Warlord()
+heimdall = Knight()
 
-# sword = Sword()
-# shield = Shield()
-# axe = GreatAxe()
-# katana = Katana()
-# wand = MagicWand()
-# super_weapon = Weapon(50, 10, 5, 150, 8)
+fight(heimdall, ronald) == False
 
-# ogre.equip_weapon(sword)
-# ogre.equip_weapon(shield)
-# ogre.equip_weapon(super_weapon)
-# lancelot.equip_weapon(super_weapon)
-# richard.equip_weapon(shield)
-# eric.equip_weapon(super_weapon)
-# freelancer.equip_weapon(axe)
-# freelancer.equip_weapon(katana)
-# priest.equip_weapon(wand)
-# priest.equip_weapon(shield)
-
-# ogre.health == 125
-# lancelot.attack == 17
-# richard.defense == 4
-# eric.vampirism == 200
-# freelancer.health == 15
-# priest.heal_power == 5
-
-# fight(ogre, eric) == False
-# fight(priest, richard) == False
-# fight(lancelot, freelancer) == True
-
-# my_army = Army()
-# my_army.add_units(Knight, 1)
-# my_army.add_units(Lancer, 1)
-
-# enemy_army = Army()
-# enemy_army.add_units(Vampire, 1)
-# enemy_army.add_units(Healer, 1)
-
-# my_army.units[0].equip_weapon(axe)
-# my_army.units[1].equip_weapon(super_weapon)
-
-# enemy_army.units[0].equip_weapon(katana)
-# enemy_army.units[1].equip_weapon(wand)
-
-# battle = Battle()
-
-# battle.fight(my_army, enemy_army) == True
-# print("Coding complete? Let's try tests!")
-
-# print(battle.fight(my_army, enemy_army))
-
-
-# ##################### TEST2 #######################
-
-# unit_1 = Warrior()
-# unit_2 = Vampire()
-# weapon_1 = Weapon(-10, 5, 0, 40, 0)
-# weapon_2 = Sword()
-# unit_1.equip_weapon(weapon_1)
-# unit_2.equip_weapon(weapon_2)
-# fight(unit_1, unit_2)
-
-
-##################### TEST3 #######################
-
-weapon_1 = Katana()
-weapon_2 = Shield()
 my_army = Army()
-my_army.add_units(Vampire, 2)
-my_army.add_units(Rookie, 2)
+my_army.add_units(Warlord, 1)
+my_army.add_units(Warrior, 2)
+my_army.add_units(Lancer, 2)
+my_army.add_units(Healer, 2)
+
 enemy_army = Army()
-enemy_army.add_units(Warrior, 1)
-enemy_army.add_units(Defender, 2)
-my_army.units[0].equip_weapon(weapon_1)
-my_army.units[1].equip_weapon(weapon_1)
-my_army.units[2].equip_weapon(weapon_2)
-enemy_army.units[0].equip_weapon(weapon_1)
-enemy_army.units[1].equip_weapon(weapon_2)
-enemy_army.units[2].equip_weapon(weapon_2)
+enemy_army.add_units(Warlord, 3)
+enemy_army.add_units(Vampire, 1)
+enemy_army.add_units(Healer, 2)
+enemy_army.add_units(Knight, 2)
+
 battle = Battle()
-print(battle.straight_fight(my_army, enemy_army))
+my_army.move_units()
+print(battle.fight(my_army, enemy_army))
