@@ -238,16 +238,6 @@ class Army():
         #     for i in range(num):
         #         self.units.append(Healer())
 
-    def move_units(self):
-        for unit in self.units:
-            if type(unit) == Warlord:
-            # Locate Lancer at the first position
-                print ("Warlord is in the unit")
-
-                break
-
-            # Locate healers at the following positions
-
 
 class Battle():
 
@@ -345,7 +335,7 @@ class Battle():
 
 
 # ##################### TEST1 #######################
-
+print('weapons imported')
 ronald = Warlord()
 heimdall = Knight()
 
@@ -364,5 +354,5 @@ enemy_army.add_units(Healer, 2)
 enemy_army.add_units(Knight, 2)
 
 battle = Battle()
-my_army.move_units()
+# my_army.move_units()
 print(battle.fight(my_army, enemy_army))
