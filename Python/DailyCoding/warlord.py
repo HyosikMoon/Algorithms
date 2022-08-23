@@ -342,9 +342,9 @@ class Battle():
 
         # Print out
         print("After move_units()")
-        print("army1: ", *[(str(type(unit)) + 'h' + str(unit.health) + 
+        print("army1: ", *[(unit.__class__.__name__ + ' h' + str(unit.health) + 
                             '|a' + str(unit.attack) + '|d' + str(unit.defense) + '|') for unit in army1.units])
-        print("army2: ", *[(str(type(unit)) + 'h' + str(unit.health) + 
+        print("army2: ", *[(unit.__class__.__name__ + ' h' + str(unit.health) + 
                             '|a' + str(unit.attack) + '|d' + str(unit.defense) + '|') for unit in army2.units])
         print()
 
@@ -369,17 +369,17 @@ class Battle():
                 
             # Print out
             print("After fight")
-            print("army1: ", *[(str(type(unit)) + 'h' + str(unit.health) + 
+            print("army1: ", *[(unit.__class__.__name__ + ' h' + str(unit.health) + 
                                 '|a' + str(unit.attack) + '|d' + str(unit.defense) + '|') for unit in army1.units])
-            print("army2: ", *[(str(type(unit)) + 'h' + str(unit.health) + 
+            print("army2: ", *[(unit.__class__.__name__ + ' h' + str(unit.health) + 
                                 '|a' + str(unit.attack) + '|d' + str(unit.defense) + '|') for unit in army2.units])
             print()
         
         # Print out
         print("Final")
-        print("army1: ", *[(str(type(unit)) + 'h' + str(unit.health) + 
+        print("army1: ", *[(unit.__class__.__name__ + ' h' + str(unit.health) + 
                             '|a' + str(unit.attack) + '|d' + str(unit.defense) + '|') for unit in army1.units])
-        print("army2: ", *[(str(type(unit)) + 'h' + str(unit.health) + 
+        print("army2: ", *[(unit.__class__.__name__ + ' h' + str(unit.health) + 
                             '|a' + str(unit.attack) + '|d' + str(unit.defense) + '|') for unit in army2.units])
         print()
         return army1.units != []
