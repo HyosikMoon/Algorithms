@@ -237,11 +237,12 @@ class Army():
         
         warrior_exist = False
         if self.lancer: # Locate Lancer at the first position
+            lancer_position = 0
             for i, unit in enumerate(self.units):
-                if type(unit) == Lancer and len(self.units) > 1:
-                    self.units[0], self.units[1:i+1] = unit, self.units[:i]
+                if type(unit) == Lancer and len(self.units) > lancer_position+1:
+                    self.units[lancer_position], self.units[lancer_position+1:i+1] = unit, self.units[lancer_position:i]
+                    if len(self.units) > lancer_position + 1: lancer_position += 1
                     warrior_exist = True
-                    break
         else: # If there is no Lancer, then locate a warrior at the last position
             for i, unit in enumerate(self.units):
                 if type(unit) != Warlord and type(unit) != Healer:
